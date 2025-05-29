@@ -6,6 +6,7 @@ import Stats from './components/StatsPanel';
 import SearchBar from './components/SearchBar';
 import CategoryFilter from './components/CategoryFilter';
 import SortSelector from './components/SortSelector';
+import DetailedStats from './components/DetailedStats';
 
 
 function App() {
@@ -51,17 +52,66 @@ function App() {
     const maxPrice = Math.max(...filteredProducts.map(p => p.price));
     const maxProduct = filteredProducts.find(p => p.price === maxPrice);
     const maxTitle = maxProduct?.title || "";
-
     //Muestra el título del producto más barato
     const minPrice = Math.min(...filteredProducts.map(p => p.price));
     const minProductObj = filteredProducts.find(p => p.price === minPrice);
     const minTitle = minProductObj?.title || "";
-
     //Calcula el precio total
     const totalPrice = filteredProducts.reduce((sum, p) => sum + p.price, 0);
-
     //Agarra los productos con más de 20 caracteres
     const longTitle = filteredProducts.filter(p => p.title.length > 20).length;
+
+    //-------------------- Nuevas estadísticas detalladas ------------------------
+    // Precio promedio general
+    const averagePrice = filteredProducts.length > 0
+      ? filteredProducts.reduce((sum, p) => sum + p.price, 0) / filteredProducts.length
+      : 0;
+
+    // Cantidad de productos por categoría
+    const productsByCategory = {};
+    filteredProducts.forEach(p => {
+      productsByCategory[p.category] = (productsByCategory[p.category] || 0) + 1;
+    });
+
+    // Stock > 50 y rating > 4.5
+    const highStockCount = filteredProducts.filter(p => p.stock > 50).length;
+    const highRatingCount = filteredProducts.filter(p => p.rating > 4.5).length;
+
+    // Precio promedio por categoría
+    const averagePriceByCategory = {};
+    categories.forEach(cat => {
+      const productsInCat = filteredProducts.filter(p => p.category === cat);
+      const total = productsInCat.reduce((sum, p) => sum + p.price, 0);
+      averagePriceByCategory[cat] = productsInCat.length ? total / productsInCat.length : 0;
+    });
+
+    // Más caro y más barato por categoría
+    const extremesByCategory = {};
+    categories.forEach(cat => {
+      const productsInCat = filteredProducts.filter(p => p.category === cat);
+      if (productsInCat.length) {
+        const max = productsInCat.reduce((a, b) => (a.price > b.price ? a : b));
+        const min = productsInCat.reduce((a, b) => (a.price < b.price ? a : b));
+        extremesByCategory[cat] = {
+          maxProduct: max.title,
+          maxPrice: max.price,
+          minProduct: min.title,
+          minPrice: min.price
+        };
+      }
+    });
+
+    // Promedio de rating general y por categoría
+    const averageRating = filteredProducts.length > 0
+      ? filteredProducts.reduce((sum, p) => sum + p.rating, 0) / filteredProducts.length
+      : 0;
+
+    const averageRatingByCategory = {};
+    categories.forEach(cat => {
+      const productsInCat = filteredProducts.filter(p => p.category === cat);
+      const total = productsInCat.reduce((sum, p) => sum + p.rating, 0);
+      averageRatingByCategory[cat] = productsInCat.length ? total / productsInCat.length : 0;
+    });
 
     //----------------------------Modo oscuro-----------------------------------
     const toggleDarkMode = () => {
@@ -100,7 +150,8 @@ function App() {
         <button className='bg-transparent hover:bg-cyan-500 text-cyan-700 font-semibold hover:text-white py-2 px-4 border border-cyan-500 hover:border-transparent rounded' onClick={() => setShow(!show)}>{show ? "Ocultar Estadísticas" : "Mostrar Estadísticas"}</button> 
       </div>
 
-      {show && (
+    {show && (
+      <>
         <Stats
           max={maxPrice}
           min={minPrice}
@@ -109,7 +160,18 @@ function App() {
           totalPrice={totalPrice}
           longTitle={longTitle}
         />
-      )}
+        <DetailedStats
+          averagePrice={averagePrice}
+          productsByCategory={productsByCategory}
+          highStockCount={highStockCount}
+          highRatingCount={highRatingCount}
+          averagePriceByCategory={averagePriceByCategory}
+          extremesByCategory={extremesByCategory}
+          averageRating={averageRating}
+          averageRatingByCategory={averageRatingByCategory}
+        />
+      </>
+    )}
     
     </div>
   )
