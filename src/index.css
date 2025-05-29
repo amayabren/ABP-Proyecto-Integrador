@@ -1,0 +1,34 @@
+.dark-mode {
+  background-color: #1a202c; 
+  color: #f0f8ff; 
+}
+
+.dark-mode h1 {
+  background-color: #1a202c;
+  color: white;
+}
+
+.dark-mode .product-card {
+  background-color: #2d3748; 
+  color: white;
+}
+
+.dark-mode .stats-card {
+  background-color: #1a202c; 
+  color: #f0f8ff; 
+}
+
+.dark-mode .title-font,
+.dark-mode .texto-productos,
+.dark-mode .texto-precios { 
+    color: white
+}
+
+.dark-mode .fondo-producto {
+    background-color: #2d3748
+}
+
+.dark-mode .fondo-h1-stats,
+.dark-mode .fondo-stats  {
+    background-color: #1a202c;
+}

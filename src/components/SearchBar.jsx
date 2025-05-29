@@ -1,0 +1,18 @@
+function SearchBar({ search, setSearch, noResults }) {
+  return (
+    <div className="text-center">
+      <input
+        className="texto-search text-center rounded-full border-4 border-pink-100 text-gray-600 m-7"
+        type="text"
+        placeholder="Buscar producto"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {noResults && (
+        <div className="mb-10 text-gray-600">No se encontraron productos</div>
+      )}
+    </div>
+  );
+}
+
+export default SearchBar;
