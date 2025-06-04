@@ -121,7 +121,7 @@ function App() {
 
   return (
     <div ref={containerRef} className="min-h-screen">
-      <h1 className="font-bold text-center bg-pink-100  text-gray-700 text-2xl p-10">Productos</h1>
+      <h1 className="titulo-productos font-bold text-center bg-pink-100  text-gray-700 text-2xl p-10">Productos</h1>
 
       <button onClick={toggleDarkMode}>Modo {darkMode ? "Claro" : "Oscuro"}</button>
 

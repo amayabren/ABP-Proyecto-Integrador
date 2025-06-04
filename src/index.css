@@ -3,7 +3,7 @@
   color: #f0f8ff; 
 }
 
-.dark-mode h1 {
+.dark-mode .titulo-productos {
   background-color: #1a202c;
   color: white;
 }
@@ -34,3 +34,6 @@
     background-color: #1a202c;
 }
 
+.dark-mode .texto-detailed-stats {
+    color: white;
+}
