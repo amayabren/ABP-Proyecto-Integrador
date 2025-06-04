@@ -20,23 +20,44 @@ function App() {
     const [sortField, setSortField] = useState("price");
     const [sortOrder, setSortOrder] = useState("asc");
 
-    useEffect(() => {
-      axios.get("https://dummyjson.com/products?limit=100").then((res) => {
-        setProducts(res.data.products);
-        const allCategories = [...new Set(res.data.products.map(p => p.category))];
-        setCategories(allCategories);
-      });
-    }, []);
-
-
     const containerRef = useRef(null);
+    
+  // 1. Cargar las categorías UNA SOLA VEZ
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const catRes = await axios.get("https://dummyjson.com/products/categories");
+        setCategories(catRes.data);
+      } catch (error) {
+        console.error("Error al obtener categorías:", error);
+      }
+    };
 
-    //Filtra los productos
-    const filteredProducts = products.filter((p) => {
-      const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
+    fetchCategories();
+  }, []);
+
+  // 2. Cargar productos cada vez que cambia la categoría
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const url =
+          selectedCategory === "all"
+            ? "https://dummyjson.com/products?limit=100"
+            : `https://dummyjson.com/products/category/${selectedCategory}`;
+
+        const res = await axios.get(url);
+        setProducts(res.data.products);
+      } catch (error) {
+        console.error("Error al obtener productos:", error);
+      }
+    };
+    fetchProducts();
+  }, [selectedCategory]);
+
+    // Filtro por búsqueda
+    const filteredProducts = products.filter((p) =>
+      p.title.toLowerCase().includes(search.toLowerCase())
+    );
 
     //Ordena los productos
     const sortedProducts = [...filteredProducts].sort((a, b) => {
