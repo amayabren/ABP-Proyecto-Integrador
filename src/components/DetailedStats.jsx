@@ -10,7 +10,7 @@ function DetailedStats({
   averageRatingByCategory
 }) {
   return (
-    <div className="bg-gray-100 p-6 my-6 rounded shadow">
+    <div className="fondo-detailed-stats bg-gray-100 p-6 my-6 rounded shadow">
       <h2 className="text-2xl font-bold text-center mb-6">Estadísticas Detalladas</h2>
 
       <p className="mb-2"><strong>Precio promedio general:</strong> ${averagePrice.toFixed(2)}</p>

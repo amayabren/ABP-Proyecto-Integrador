@@ -24,11 +24,13 @@
     color: white
 }
 
-.dark-mode .fondo-producto {
+.dark-mode .fondo-producto,
+.dark-mode .fondo-detailed-stats {
     background-color: #2d3748
 }
 
 .dark-mode .fondo-h1-stats,
-.dark-mode .fondo-stats  {
+.dark-mode .fondo-stats {
     background-color: #1a202c;
 }
+
