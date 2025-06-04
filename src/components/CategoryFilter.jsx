@@ -9,9 +9,7 @@ function CategoryFilter({ selectedCategory, setSelectedCategory, categories }) {
       >
         <option value="all">Todas</option>
         {categories.map((cat) => (
-          <option key={cat.slug} value={cat.slug}>
-            {cat.name}
-          </option>
+          <option key={cat} value={cat}>{cat}</option>
         ))}
       </select>
     </div>

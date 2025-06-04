@@ -1,3 +1,4 @@
+
 function DetailedStats({
   averagePrice,
   productsByCategory,
@@ -22,8 +23,8 @@ function DetailedStats({
         {Object.keys(productsByCategory).map(cat => (
           <li key={cat}>
             <strong>{cat}:</strong> {productsByCategory[cat]} productos | 
-            Promedio precio: {typeof averagePriceByCategory[cat] === "number" ? `$${averagePriceByCategory[cat].toFixed(2)}` : "N/A"} | 
-            Promedio rating: {typeof averageRatingByCategory[cat] === "number" ? averageRatingByCategory[cat].toFixed(2) : "N/A"}
+            Promedio precio: ${averagePriceByCategory[cat].toFixed(2)} | 
+            Promedio rating: {averageRatingByCategory[cat]?.toFixed(2)}
             <br />
             Más caro: {extremesByCategory[cat]?.maxProduct} (${extremesByCategory[cat]?.maxPrice})
             <br />
