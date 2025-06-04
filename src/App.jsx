@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar';
 import CategoryFilter from './components/CategoryFilter';
 import SortSelector from './components/SortSelector';
 import DetailedStats from './components/DetailedStats';
+import Charts from './components/Charts';
 
 
 function App() {
@@ -169,6 +170,10 @@ function App() {
           extremesByCategory={extremesByCategory}
           averageRating={averageRating}
           averageRatingByCategory={averageRatingByCategory}
+        />
+        <Charts
+          productsByCategory={productsByCategory}
+          allProducts={products}
         />
       </>
     )}
