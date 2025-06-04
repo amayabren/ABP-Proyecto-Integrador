@@ -122,29 +122,39 @@ function App() {
 
   return (
     <div ref={containerRef} className="min-h-screen">
-      <h1 className="titulo-productos font-bold text-center bg-pink-100  text-gray-700 text-2xl p-10">Productos</h1>
 
-      <button onClick={toggleDarkMode}>Modo {darkMode ? "Claro" : "Oscuro"}</button>
-
+    <div className="header flex justify-between items-center bg-pink-100 px-6 py-4">
+      <h1 className="font-bold text-white text-2xl">
+        ABP Proyecto Integrador
+      </h1>
+      <button
+        onClick={toggleDarkMode}
+        className="bg-white hover:bg-pink-100 text-gray-500 font-semibold py-2 px-4 border border-pink-200 rounded shadow"
+      >
+        Modo {darkMode ? "Claro" : "Oscuro"}
+      </button>
+    </div>
+      
       <SearchBar
         search={search}
         setSearch={setSearch}
         noResults={filteredProducts.length === 0}
       />
 
+      <div className='barra flex justify-center items-center gap-x-16 px-6 py-4'>
       <CategoryFilter
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         categories={categories}
       />
-
       <SortSelector
         sortField={sortField}
         setSortField={setSortField}
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
       />
-      
+      </div>
+
       <ProductsList products={sortedProducts} />
       
       <div className="fondo text-center p-10">

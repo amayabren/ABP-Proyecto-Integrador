@@ -1,11 +1,14 @@
+.header {
+  background-color: rgb(252, 193, 204);
+}
+
+.titulo-proyecto {
+  font-size: 200%;
+}
+
 .dark-mode {
   background-color: #2d3748; 
   color: #f0f8ff; 
-}
-
-.dark-mode .titulo-productos {
-  background-color: #1a202c;
-  color: white;
 }
 
 .dark-mode .product-card {
@@ -37,3 +40,4 @@
 .dark-mode .texto-detailed-stats {
     color: white;
 }
+
