@@ -158,11 +158,13 @@ function App() {
       <ProductsList products={sortedProducts} />
       
       <div className="fondo text-center p-10">
-        <button className='bg-transparent hover:bg-cyan-500 text-cyan-700 font-semibold hover:text-white py-2 px-4 border border-cyan-500 hover:border-transparent rounded' onClick={() => setShow(!show)}>{show ? "Ocultar Estadísticas" : "Mostrar Estadísticas"}</button> 
+        <button className='bg-transparent hover:bg-pink-300 text-pink-400 font-semibold hover:text-white py-2 px-4 border border-pink-300 hover:border-transparent rounded' onClick={() => setShow(!show)}>{show ? "Ocultar Estadísticas" : "Mostrar Estadísticas"}</button> 
       </div>
 
+      
     {show && (
       <>
+        <div className='w-1/3 mx-auto border-t-4 border-gray-100'></div>
         <Stats
           max={maxPrice}
           min={minPrice}
@@ -171,6 +173,7 @@ function App() {
           totalPrice={totalPrice}
           longTitle={longTitle}
         />
+        <div className='w-1/3 mx-auto border-t-4 border-gray-100'></div>
         <DetailedStats
           averagePrice={averagePrice}
           productsByCategory={productsByCategory}
@@ -181,6 +184,7 @@ function App() {
           averageRating={averageRating}
           averageRatingByCategory={averageRatingByCategory}
         />
+        <div className='w-1/3 mx-auto border-t-4 border-gray-100'></div>
         <Charts
           productsByCategory={productsByCategory}
           allProducts={products}

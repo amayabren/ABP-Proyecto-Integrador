@@ -3,7 +3,7 @@ import {
   LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer
 } from 'recharts';
 
-const COLORS = ['#6366f1', '#34d399', '#f87171']; // Tailwind colors
+const COLORS = ['#6366f1', '#34d399', '#f87171']; 
 
 function Charts({ productsByCategory, allProducts }) {
   // Datos para el gráfico de barras
@@ -40,7 +40,7 @@ function Charts({ productsByCategory, allProducts }) {
   return (
     <section className="py-12">
       <div className="container mx-auto px-4">
-
+        <h1 className='sm:text-3xl text-2xl font-medium text-center title-font text-pink-300 mb-10 '>Visualizaciones</h1>
         {/* Gráfico de barras */}
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Cantidad de productos por categoría

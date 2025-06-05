@@ -1,7 +1,7 @@
 function Stats(props) {
   return (
-    <div className="fondo-stats text-center my-10 bg-cyan-100">
-      <h1 className="fondo-h1-stats sm:text-3xl text-2xl font-medium title-font p-10 text-gray-900">
+    <div className="fondo-stats text-center my-10">
+      <h1 className="fondo-h1-stats sm:text-3xl text-2xl font-medium title-font p-10 text-pink-300">
         Estadísticas
       </h1>
 
