@@ -14,11 +14,11 @@ function Charts({ productsByCategory, allProducts }) {
 
   // Datos simulados para gráfico de líneas (puede venir de la API más adelante)
   const lineChartData = [
-    { month: 'Ene', precio: 300 },
-    { month: 'Feb', precio: 350 },
-    { month: 'Mar', precio: 280 },
-    { month: 'Abr', precio: 320 },
-    { month: 'May', precio: 310 },
+    { month: 'Ene', precio: 100 },
+    { month: 'Feb', precio: 200 },
+    { month: 'Mar', precio: 300 },
+    { month: 'Abr', precio: 10 },
+    { month: 'May', precio: 25 },
   ];
 
   // Datos para Pie chart por stock

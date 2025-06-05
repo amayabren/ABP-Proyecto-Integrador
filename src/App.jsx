@@ -20,14 +20,18 @@ function App() {
     const [categories, setCategories] = useState([]);
     const [sortField, setSortField] = useState("price");
     const [sortOrder, setSortOrder] = useState("asc");
+    const [page, setPage] = useState(1);
+    const [format, setFormat] = useState("");
+
+    const limit = 30;
 
     useEffect(() => {
-      axios.get("https://dummyjson.com/products?limit=100").then((res) => {
+      axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${(page - 1) * limit}`).then((res) => {
         setProducts(res.data.products);
         const allCategories = [...new Set(res.data.products.map(p => p.category))];
         setCategories(allCategories);
       });
-    }, []);
+    }, [page]);
 
 
     const containerRef = useRef(null);
@@ -120,6 +124,29 @@ function App() {
         containerRef.current.classList.toggle("dark-mode");
     };
 
+    //----------------------------Descarga de datos -----------------------------
+    const handleExport = () => {
+        const blob = new Blob([JSON.stringify(filteredProducts, null, 2)], {
+            type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        triggerDownload(url, "productos.json");
+    };
+
+    const triggerDownload = (url, filename) => {
+        //crear el hipervinculo
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        //Agregamos el anchor tag en el DOM
+        document.body.appendChild(link);
+        //Simulas el click en el elemento
+        link.click();
+        //Eliminar el elemento anchor
+        document.body.removeChild(link);
+    };
+
+
   return (
     <div ref={containerRef} className="min-h-screen">
 
@@ -155,10 +182,28 @@ function App() {
       />
       </div>
 
+
+      <select onChange={(e) => setFormat(e.target.value)} value={format}>
+        <option value="">Seleccionar formáto</option>
+        <option value="json">JSON</option>
+      </select>
+      <button onClick={handleExport}>Exportar archivo</button>
+
+
       <ProductsList products={sortedProducts} />
       
+      <div className='flex justify-between w-1/3 mx-auto mb-30'>
+        <button className='border px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed' disabled={page === 1} onClick={() => {setPage(page - 1);}}>
+          Página anterior
+        </button>
+        <h3>{page}</h3>
+        <button className='border px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed' disabled={products.length < 30} onClick={() => {setPage(page + 1);}}>
+          Página siguiente
+        </button>
+      </div>
+
       <div className="fondo text-center p-10">
-        <button className='bg-transparent hover:bg-pink-300 text-pink-400 font-semibold hover:text-white py-2 px-4 border border-pink-300 hover:border-transparent rounded' onClick={() => setShow(!show)}>{show ? "Ocultar Estadísticas" : "Mostrar Estadísticas"}</button> 
+        <button className='bg-transparent hover:bg-pink-300 text-pink-400 font-semibold hover:text-white py-2 px-4 border border-pink-300 hover:border-transparent rounded mb-20' onClick={() => setShow(!show)}>{show ? "Ocultar Estadísticas" : "Mostrar Estadísticas"}</button> 
       </div>
 
       
@@ -187,7 +232,7 @@ function App() {
         <div className='w-1/3 mx-auto border-t-4 border-gray-100'></div>
         <Charts
           productsByCategory={productsByCategory}
-          allProducts={products}
+          allProducts={filteredProducts}
         />
       </>
     )}
@@ -197,3 +242,6 @@ function App() {
 }
 
 export default App
+
+
+
