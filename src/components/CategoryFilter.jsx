@@ -8,9 +8,7 @@ function CategoryFilter({ selectedCategory, setSelectedCategory, categories }) {
         className="border border-gray-300 rounded px-3 py-1"
       >
         <option value="all">Todas</option>
-        {categories.map((cat) => (
-          <option key={cat} value={cat}>{cat}</option>
-        ))}
+        {categories.map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
       </select>
     </div>
   );

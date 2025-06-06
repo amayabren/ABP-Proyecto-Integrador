@@ -43,7 +43,7 @@ function App() {
       return matchesSearch && matchesCategory;
     });
 
-    //Ordena los productos
+    //Ordenamiento de los productos
     const sortedProducts = [...filteredProducts].sort((a, b) => {
       if (sortOrder === "asc") {
         return a[sortField] - b[sortField];
@@ -146,7 +146,7 @@ function App() {
         document.body.removeChild(link);
     };
 
-
+//--------------------------Return----------------------------------
   return (
     <div ref={containerRef} className="min-h-screen">
 
@@ -182,13 +182,15 @@ function App() {
       />
       </div>
 
-
-      <select onChange={(e) => setFormat(e.target.value)} value={format}>
-        <option value="">Seleccionar formáto</option>
+    <h3 className='font-bold'>Descargar productos filtrados</h3>
+    <div className='text-sm '>
+      <label className="px-4 mr-2 font-semibold">Seleccionar formato:</label>
+      <select className="border border-gray-300 rounded px-3 py-1" 
+        onChange={(e) => setFormat(e.target.value)} value={format}>
         <option value="json">JSON</option>
       </select>
-      <button onClick={handleExport}>Exportar archivo</button>
-
+      <button className='bg-transparent hover:bg-pink-300 text-pink-400 font-semibold hover:text-white py-2 px-4 border border-pink-300 hover:border-transparent rounded ml-10' onClick={handleExport}>Exportar archivo</button>
+    </div>
 
       <ProductsList products={sortedProducts} />
       
