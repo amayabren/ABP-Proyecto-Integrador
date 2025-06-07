@@ -3,25 +3,22 @@ import {
   LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer
 } from 'recharts';
 
-const COLORS = ['#6366f1', '#34d399', '#f87171']; 
+const COLORS = ['#8884d8', '#82ca9d', '#5dade2']; 
 
 function Charts({ productsByCategory, allProducts }) {
-  // Datos para el gráfico de barras
   const barChartData = Object.keys(productsByCategory).map((category) => ({
     name: category,
     productos: productsByCategory[category],
   }));
 
-  // Datos simulados para gráfico de líneas (puede venir de la API más adelante)
   const lineChartData = [
-    { month: 'Ene', precio: 100 },
-    { month: 'Feb', precio: 200 },
-    { month: 'Mar', precio: 300 },
-    { month: 'Abr', precio: 10 },
-    { month: 'May', precio: 25 },
+    { month: 'Ene', precio: 600 },
+    { month: 'Feb', precio: 33 },
+    { month: 'Mar', precio: 250 },
+    { month: 'Abr', precio: 80 },
+    { month: 'May', precio: 250 },
   ];
 
-  // Datos para Pie chart por stock
   const stockData = [
     {
       name: 'Alto stock (> 50)',
@@ -39,11 +36,15 @@ function Charts({ productsByCategory, allProducts }) {
 
   return (
     <section className="py-12">
-      <div className="container mx-auto px-4">
-        <h1 className='sm:text-3xl text-2xl font-medium text-center title-font text-pink-300 mb-10 '>Visualizaciones</h1>
-        {/* Gráfico de barras */}
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Cantidad de productos por categoría
+  <div className="container mx-auto px-4">
+    <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-pink-300 mb-20 mt-10">
+      Visualizaciones
+    </h1>
+
+    <div className="flex flex-wrap justify-center gap-6">
+      <div className="w-full md:w-1/3">
+        <h2 className="barra text-gray-700 font-semibold mb-4 text-center">
+          Productos por categoría
         </h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={barChartData}>
@@ -52,13 +53,14 @@ function Charts({ productsByCategory, allProducts }) {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="productos" fill="#6366f1" />
+            <Bar dataKey="productos" fill="#82ca9d" />
           </BarChart>
         </ResponsiveContainer>
+      </div>
 
-        {/* Gráfico de líneas */}
-        <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">
-          Evolución de precios simulada
+      <div className="w-full md:w-1/3">
+        <h2 className="lineas text-gray-700 font-semibold mb-4 text-center">
+          Evolución de precios
         </h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={lineChartData}>
@@ -70,10 +72,11 @@ function Charts({ productsByCategory, allProducts }) {
             <Line type="monotone" dataKey="precio" stroke="#34d399" />
           </LineChart>
         </ResponsiveContainer>
+      </div>
 
-        {/* Pie chart */}
-        <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">
-          Proporción de productos según stock
+      <div className="w-full md:w-1/3">
+        <h2 className="pie-chart text-gray-700 font-semibold mb-4 text-center">
+          Proporción por stock
         </h2>
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
@@ -96,7 +99,9 @@ function Charts({ productsByCategory, allProducts }) {
           </PieChart>
         </ResponsiveContainer>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
   );
 }
 

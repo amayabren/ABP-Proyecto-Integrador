@@ -5,7 +5,7 @@ function SortSelector({ sortField, setSortField, sortOrder, setSortOrder }) {
       <select
         value={sortField}
         onChange={(e) => setSortField(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-1 mr-4"
+        className="seleccion border border-gray-300 rounded px-3 py-1 mr-4"
       >
         <option value="price">Precio</option>
         <option value="rating">Rating</option>

@@ -16,8 +16,7 @@
   color: white;
 }
 
-.dark-mode .stats-card {
-  background-color: #1a202c; 
+.dark-mode .stats-card { 
   color: #f0f8ff; 
 }
 
@@ -32,12 +31,24 @@
     background-color: #2d3748
 }
 
-.dark-mode .fondo-h1-stats,
-.dark-mode .fondo-stats {
-    background-color: #1a202c;
-}
+
 
 .dark-mode .texto-detailed-stats {
     color: white;
 }
 
+.dark-mode .buscar-producto input,
+.dark-mode .buscar-producto div {
+  color: white;
+}
+
+.dark-mode .barra,
+.dark-mode .lineas,
+.dark-mode .pie-chart {
+  color: white;
+}
+
+.dark-mode .seleccion {
+  background-color: #2d3748;
+ color: white;
+}

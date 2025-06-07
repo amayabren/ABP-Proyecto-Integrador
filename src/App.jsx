@@ -197,7 +197,7 @@ function App() {
      {/* ----------Esportación ----------- */}    
     <div className='text-sm '>
       <label className="px-4 mr-2 font-semibold">Seleccionar formato:</label>
-      <select className="border border-gray-300 rounded px-3 py-1" 
+      <select className="seleccion border border-gray-300 rounded px-3 py-1" 
         onChange={(e) => setFormat(e.target.value)} value={format}> {/* onChange para que vaya cambiando el formato de acuerdo a lo que se elija */}
         <option value="json">JSON</option> {/* y el value son las opciones */}
         <option value="csv">CSV</option>

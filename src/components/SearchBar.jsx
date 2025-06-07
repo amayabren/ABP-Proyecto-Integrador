@@ -1,6 +1,6 @@
 function SearchBar({ search, setSearch, noResults }) {
   return (
-    <div className="text-center">
+    <div className="buscar-producto text-center">
       <input
         className="w-150 texto-search text-center rounded-full border-4 border-pink-100 text-gray-600 m-10"
         type="text"
