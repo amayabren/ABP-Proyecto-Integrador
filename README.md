@@ -1,12 +1,32 @@
-# React + Vite
+# ABP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nombre: Brenda Amaya
 
-Currently, two official plugins are available:
+Para desarrollar el ABP se tomó de base al proyecto que se venía trabajando en las evidencias anteriores. El useEffect como componente principal nos va a traer los productos junto con algunos agregados en su código para que también haga funcionar el filtro de categorías y la paginación.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instrucciones para ejecutar el proyecto.
 
-## Expanding the ESLint configuration
+Este proyecto fue desarrollado con **React** usando **Vite**, **Tailwind CSS** y **Axios**. Se debe tener instalado **Node.js**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clonar el repositorio
+2. npm install
+3. npm run dev
+
+## Funcionamiento
+
+- **App.jsx**: Integra todos los componentes y los estados necesarios para el proyecto.
+- **ProductList**: Utiliza el diseño de una card de Ecommerce de Tailblocks y muestra la lista de productos.
+- **ProductItem**: Utiliza el diseño de una card de Stats de Tailblocks y muestra las nuevas estadísticas.
+- **SearchBar**: Contiene la barra de búsqueda, se mantuvo el diseño y lo que cambió fue la longitud y el color.
+- **CategoryFilter**: Para el filtrado de categoría se optó por usar una label y un select. Incorpora un onChange para que al seleccionar una categoría se cambie a esa.
+- **SortSelector**: Con una lógica parecida al componente anterior, nos permite ordenar los productos por precio o rating gracias al onChange. Para el ordenamiento se utliza la función _sort_.
+- **Stats**: Se mantuvo el diseño de la evidencia 2, mostrando un diseño de una card de Stats de Tailblocks.
+- **Detailed Stats**: Utiliza el último diseño de la parte de Feature de Tailblocks. Se incorporaron las props necesarias para que se muestre cada estadística.
+- **Charts**: Encontramos los tres gráficos principales, con una visualización en barras, gráfico de líneas y un pie chart. Se usó como base Recharts.
+- **Paginación**: La paginación se encuentra dentro del App.jsx. El estado page, setPage va a llevar el registro de la página en donde estoy. Y en el useEffect de los productos, lo modifcamos para que en la dependencia esté page. Gracias a los botones con onClick la página va cambiando.
+- **Exportación**: Para la exportación usamos blob y creamos una url temporal para descargar los archivos. Para JSON fue simple porque se puede usar stringify a la lista de productos filtrados y ya está. En cambio CSV primero se necesitan pasar los datos a una tabla por lo que se usa una función aparte para esto.
+
+## Estilos
+
+El proyecto tiene un motivo rosa e incorpora distintas cards de Tailblocks, como se mencionaba anteriormente. Para el header se basó en una de las cards e incluye el botón DarkMode, para el cual que se utilizó la documentación de Tailwind buttons. El mismo botón se modificó y se aplicó también a todos los botones que se muestran.
+Se agregó una barra divisora como salen en algunas cards de Tailblocks y se mantuvo el fondo blanco a diferencia de antes por una cuestión estética.
