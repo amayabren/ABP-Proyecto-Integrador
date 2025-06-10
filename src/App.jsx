@@ -231,7 +231,7 @@ function App() {
           value={format}
         >
           {" "}
-          {/* la igual que en el SortSelector, el onChange para que cambie de formato de acuerdo a lo que se elija */}
+          {/* la igual que en el SortSelector, el onChange es para que cambie de formato de acuerdo a lo que se elija */}
           <option value="json">JSON</option>
           <option value="csv">CSV</option>
         </select>

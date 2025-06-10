@@ -42,7 +42,7 @@ Este proyecto fue desarrollado con **React** usando **Vite**, **Tailwind CSS**, 
 
 - **Charts**: Encontramos los tres gráficos principales, con una visualización en barras, gráfico de líneas y un pie chart. Se usó como base Recharts.
 
-- **Paginación**: La paginación se encuentra dentro del App.jsx. El estado page, setPage va a llevar el registro de la página en donde estoy. Y en el useEffect de los productos, lo modifcamos para que en la dependencia esté page. Gracias a los botones con onClick la página va cambiando.
+- **Pagination**: El estado page, setPage va a llevar el registro de la página en donde estoy. Gracias a los botones con onClick la página va cambiando.
 
 - **Exportación**: Para la exportación usamos blob y creamos una url temporal para descargar los archivos. Para JSON fue simple porque se puede usar stringify a la lista de productos filtrados y ya está. En cambio CSV primero se necesitan pasar los datos a una tabla por lo que se usa una función aparte para esto.
 
@@ -50,10 +50,18 @@ Este proyecto fue desarrollado con **React** usando **Vite**, **Tailwind CSS**, 
 
 - El proyecto tiene un motivo rosa e incorpora distintas cards de Tailblocks.
 
-- Para el header se basó en una de las cards e incluye el botón DarkMode, para el cual que se utilizó la documentación de Tailwind buttons.
+- Para el header se basó en general en los headers de Tailblocks e incluye el botón DarkMode, para el cual que se utilizó la documentación de Tailwind buttons.
 
 - El mismo botón se modificó y se aplicó también a todos los botones que se muestran.
 
 - Se agregó una barra divisora como salen en algunas cards de Tailblocks y se mantuvo el fondo blanco a diferencia de antes por una cuestión estética.
 
 - Se adapta tanto a modo claro como a oscuro.
+
+## Cómo obtengo los datos
+
+Al principio, las categorías estaban siendo obtenidas dentro del mismo useEffect que traía los productos, debajo de `https://dummyjson.com/products?limit=${limit}&skip=${(page - 1) * limit}` pero esto tenía un problema porque solo mostraba las categorías de los productos que se mostraban por página. En la página uno eran 3, en la página 2 eran 4, y así, en vez de mostrar todas las categorías. Para solucionar eso, separé la lógica en dos useEffect. Uno se ejecuta una sola vez al montar el componente y obtiene todas las categorías, y el otro useEffect se encarga de traer los productos dependiendo de la categoría seleccionada y la página actual.
+
+## Imagen
+
+![Captura 1](readme-assets/captura.png)
