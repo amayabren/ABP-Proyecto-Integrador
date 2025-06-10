@@ -1,4 +1,3 @@
-
 function DetailedStats({
   averagePrice,
   productsByCategory,
@@ -7,11 +6,11 @@ function DetailedStats({
   averagePriceByCategory,
   extremesByCategory,
   averageRating,
-  averageRatingByCategory
+  averageRatingByCategory,
 }) {
   return (
     <section className="texto-detailed-stats text-gray-600 body-font ">
-      <div className="container px-5 py-24 mx-auto ">
+      <div className="container px-5 py-24 mx-auto mb-10 ">
         <div className="text-center mb-20 ">
           <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-pink-300 mb-4 ">
             Estadísticas Detalladas
@@ -32,11 +31,23 @@ function DetailedStats({
               </h2>
               <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                 {[
-                  {label: `Productos: ${productsByCategory[cat]}`,},
-                  {label: `Precio promedio: $${averagePriceByCategory[cat]?.toFixed(2)}`,},
-                  {label: `Rating promedio: ${averageRatingByCategory[cat]?.toFixed(2)}`,},
-                  {label: `Más caro: ${extremesByCategory[cat]?.maxProduct} ($${extremesByCategory[cat]?.maxPrice})`,},
-                  {label: `Más barato: ${extremesByCategory[cat]?.minProduct} ($${extremesByCategory[cat]?.minPrice})`,},
+                  { label: `Productos: ${productsByCategory[cat]}` },
+                  {
+                    label: `Precio promedio: $${averagePriceByCategory[
+                      cat
+                    ]?.toFixed(2)}`,
+                  },
+                  {
+                    label: `Rating promedio: ${averageRatingByCategory[
+                      cat
+                    ]?.toFixed(2)}`,
+                  },
+                  {
+                    label: `Más caro: ${extremesByCategory[cat]?.maxProduct} ($${extremesByCategory[cat]?.maxPrice})`,
+                  },
+                  {
+                    label: `Más barato: ${extremesByCategory[cat]?.minProduct} ($${extremesByCategory[cat]?.minPrice})`,
+                  },
                 ].map((item, idx) => (
                   <span key={idx} className="flex items-center text-sm">
                     <span className="bg-indigo-100 text-indigo-500 w-4 h-4 mr-2 rounded-full inline-flex items-center justify-center">
@@ -62,6 +73,6 @@ function DetailedStats({
       </div>
     </section>
   );
-};
+}
 
 export default DetailedStats;

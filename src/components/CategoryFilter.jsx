@@ -1,16 +1,17 @@
-function CategoryFilter({ selectedCategory, setSelectedCategory, categories }) {
+function CategoryFilter({ categories, selectedCategory, onChange }) {
   return (
-    <div className="text-center my-4">
-      <label className="mr-2 font-semibold">Filtrar por categoría:</label>
-      <select className="seleccion border border-gray-300 rounded px-3 py-1"
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-      >
-        <option value="all">Todas</option>
-        {categories.map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
-      </select>
-    </div>
+    <select
+      value={selectedCategory}
+      onChange={(e) => onChange(e.target.value)}
+      className="seleccion p-2 border rounded text-gray-700"
+    >
+      <option value="all">Todas las categorías</option>
+      {categories.map((cat) => (
+        <option key={cat.slug} value={cat.slug}>
+          {cat.name}
+        </option>
+      ))}
+    </select>
   );
 }
-
 export default CategoryFilter;

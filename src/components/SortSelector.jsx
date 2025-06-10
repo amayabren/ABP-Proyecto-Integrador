@@ -1,25 +1,17 @@
-function SortSelector({ sortField, setSortField, sortOrder, setSortOrder }) {
+function SortSelector({ sortBy, onChange }) {
   return (
-    <div className="text-center my-4">
-      <label className="mr-2 font-semibold">Ordenar por:</label>
-      <select
-        value={sortField}
-        onChange={(e) => setSortField(e.target.value)}
-        className="seleccion border border-gray-300 rounded px-3 py-1 mr-4"
-      >
-        <option value="price">Precio</option>
-        <option value="rating">Rating</option>
-      </select>
-
-      <select
-        value={sortOrder}
-        onChange={(e) => setSortOrder(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-1"
-      >
-        <option value="asc">Ascendente</option>
-        <option value="desc">Descendente</option>
-      </select>
-    </div>
+    <select
+      value={sortBy}
+      onChange={(e) => onChange(e.target.value)} //onChange para que vaya cambiando el orden de acuerdo a lo que se elija
+      className="seleccion p-2 border rounded text-gray-700"
+    >
+      <option value="none">Sin orden</option>{" "}
+      {/* y el value son las opciones */}
+      <option value="priceAsc">Precio: Menor a Mayor</option>
+      <option value="priceDesc">Precio: Mayor a Menor</option>
+      <option value="ratingAsc">Rating: Menor a Mayor</option>
+      <option value="ratingDesc">Rating: Mayor a Menor</option>
+    </select>
   );
 }
 
